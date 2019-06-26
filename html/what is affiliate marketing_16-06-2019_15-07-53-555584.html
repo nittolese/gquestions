@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Tree Example</title>
+
+    <style>
+	
+	.node {
+		cursor: pointer;
+	}
+
+	.node circle {
+	  fill: #fff;
+	  stroke: steelblue;
+	  stroke-width: 3px;
+	}
+
+	.node text {
+	  font: 12px sans-serif;
+	}
+
+	.link {
+	  fill: none;
+	  stroke: #ccc;
+	  stroke-width: 2px;
+	}
+	
+    </style>
+
+  </head>
+
+  <body>
+
+<!-- load the d3.js library -->	
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+var treeData = [{"name": "what is affiliate marketing", "parent": "null", "children": [{"name": "Dictionary\naffiliate marketing\nnoun\na marketing arrangement by which an online retailer pays commission to an external website for traffic or sales generated from its referrals.\n\"most of my earnings are from affiliate marketing, direct ad sales, and sponsored posts\"\nTranslations, word origin, and more definitions\nFeedback", "parent": "what is affiliate marketing", "children": []}, {"name": "How do you become an affiliate marketer?", "parent": "what is affiliate marketing", "children": [{"name": "How do I become an Amazon affiliate marketer?", "parent": "How do you become an affiliate marketer?", "children": [{"name": "Can anyone become an Amazon affiliate?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How much can you make as an Amazon affiliate?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "What is the best affiliate program?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How do affiliate marketers make money for beginners?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How can I start affiliate marketing without a website?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How can I make money on Amazon without selling?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "What percentage do Amazon affiliates make?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "Does Amazon affiliate pay for clicks?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How do I become an Amazon reviewer?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How Much Can Affiliate Marketers Make?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How do I create an Amazon affiliate store?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How much money do Amazon affiliates make?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How can I make money on Amazon without selling?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "What percentage do Amazon affiliates make?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How do affiliate marketers make money for beginners?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How can I start affiliate marketing without a website?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "What is Amazon affiliate program?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "Can anyone become an Amazon affiliate?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How Much Can Affiliate Marketers Make?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How much money do Amazon affiliates make?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How Much Can Affiliate Marketers Make?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How much money do Amazon affiliates make?", "parent": "How do I become an Amazon affiliate marketer?"}, {"name": "How can I make money on Amazon without selling?", "parent": "How do I become an Amazon affiliate marketer?"}]}, {"name": "How do I get a job in affiliate marketing?", "parent": "How do you become an affiliate marketer?", "children": [{"name": "Are affiliate programs worth it?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "Do you need a business license for affiliate marketing?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "Does Amazon use affiliate marketing?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "Is affiliate marketing still profitable?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "How do affiliate programs make money?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "How do I join Amazon affiliate marketing?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "How do you make money in marketing?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "How do I find affiliate marketing?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "Does affiliate marketing still work in 2018?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "Are affiliate programs worth it?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "Do you need a business license for affiliate marketing?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "Does Amazon use affiliate marketing?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "Can affiliate marketing make you rich?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "How do I join Amazon affiliate marketing?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "How do you make money in marketing?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "Is affiliate marketing still profitable?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "Do you need a business license for affiliate marketing?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "How do I make money as an affiliate?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "Is affiliate marketing still profitable?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "Do you need a business license for affiliate marketing?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "Does Amazon use affiliate marketing?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "Is affiliate marketing still profitable?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "Can affiliate marketing make you rich?", "parent": "How do I get a job in affiliate marketing?"}, {"name": "How do affiliate programs make money?", "parent": "How do I get a job in affiliate marketing?"}]}]}, {"name": "What is affiliate marketing and how does it work for beginners?", "parent": "what is affiliate marketing", "children": [{"name": "How can I be successful in affiliate marketing?", "parent": "What is affiliate marketing and how does it work for beginners?", "children": [{"name": "Can affiliate marketing make you rich?", "parent": "How can I be successful in affiliate marketing?"}, {"name": "What is affiliate marketing and how does it work for beginners?", "parent": "How can I be successful in affiliate marketing?"}, {"name": "How can I maximize my affiliate marketing?", "parent": "How can I be successful in affiliate marketing?"}, {"name": "Which website is best for affiliate marketing?", "parent": "How can I be successful in affiliate marketing?"}, {"name": "How do I get a job in affiliate marketing?", "parent": "How can I be successful in affiliate marketing?"}, {"name": "How do I start affiliate marketing from scratch?", "parent": "How can I be successful in affiliate marketing?"}, {"name": "What is affiliate marketing and how does it work for beginners?", "parent": "How can I be successful in affiliate marketing?"}, {"name": "How can I maximize my affiliate marketing?", "parent": "How can I be successful in affiliate marketing?"}, {"name": "Can affiliate marketing make you rich?", "parent": "How can I be successful in affiliate marketing?"}, {"name": "Which website is best for affiliate marketing?", "parent": "How can I be successful in affiliate marketing?"}, {"name": "How do I become an Amazon affiliate marketer?", "parent": "How can I be successful in affiliate marketing?"}, {"name": "Can affiliate marketing make you rich?", "parent": "How can I be successful in affiliate marketing?"}, {"name": "How can I maximize my affiliate marketing?", "parent": "How can I be successful in affiliate marketing?"}, {"name": "How does affiliate marketing work step by step?", "parent": "How can I be successful in affiliate marketing?"}, {"name": "How can I maximize my affiliate marketing?", "parent": "How can I be successful in affiliate marketing?"}, {"name": "How does affiliate marketing work step by step?", "parent": "How can I be successful in affiliate marketing?"}]}, {"name": "How do I start an affiliate program?", "parent": "What is affiliate marketing and how does it work for beginners?", "children": [{"name": "How much does it cost to set up an affiliate program?", "parent": "How do I start an affiliate program?"}, {"name": "How do I become an affiliate?", "parent": "How do I start an affiliate program?"}, {"name": "How do I promote my affiliate program?", "parent": "How do I start an affiliate program?"}, {"name": "How can I be a good affiliate?", "parent": "How do I start an affiliate program?"}, {"name": "How do I start a successful affiliate program?", "parent": "How do I start an affiliate program?"}, {"name": "How do I start an affiliate program for my business?", "parent": "How do I start an affiliate program?"}, {"name": "What is the best travel affiliate program?", "parent": "How do I start an affiliate program?"}, {"name": "How do I become an affiliate?", "parent": "How do I start an affiliate program?"}, {"name": "How do I promote my affiliate program?", "parent": "How do I start an affiliate program?"}, {"name": "How do I start a successful affiliate program?", "parent": "How do I start an affiliate program?"}, {"name": "How do I become a successful affiliate?", "parent": "How do I start an affiliate program?"}, {"name": "How do I start an affiliate program for my business?", "parent": "How do I start an affiliate program?"}, {"name": "How can I be a good affiliate?", "parent": "How do I start an affiliate program?"}, {"name": "How do I start a successful affiliate program?", "parent": "How do I start an affiliate program?"}, {"name": "How do I start an affiliate program for my business?", "parent": "How do I start an affiliate program?"}, {"name": "How much does it cost to set up an affiliate program?", "parent": "How do I start an affiliate program?"}, {"name": "How do I start a successful affiliate program?", "parent": "How do I start an affiliate program?"}, {"name": "How do I start an affiliate program for my business?", "parent": "How do I start an affiliate program?"}]}, {"name": "What is Amazon affiliate marketing?", "parent": "What is affiliate marketing and how does it work for beginners?", "children": [{"name": "Can anyone become an Amazon affiliate?", "parent": "What is Amazon affiliate marketing?"}, {"name": "Is affiliate marketing a pyramid scheme?", "parent": "What is Amazon affiliate marketing?"}, {"name": "What is the best affiliate program?", "parent": "What is Amazon affiliate marketing?"}, {"name": "Can you make money with Amazon affiliate program?", "parent": "What is Amazon affiliate marketing?"}, {"name": "How can I start affiliate marketing without a website?", "parent": "What is Amazon affiliate marketing?"}, {"name": "Can anyone become an Amazon affiliate?", "parent": "What is Amazon affiliate marketing?"}, {"name": "Is affiliate marketing a pyramid scheme?", "parent": "What is Amazon affiliate marketing?"}, {"name": "What is the best affiliate program?", "parent": "What is Amazon affiliate marketing?"}, {"name": "Can you make money with Amazon affiliate program?", "parent": "What is Amazon affiliate marketing?"}, {"name": "How do I register for Amazon affiliate marketing?", "parent": "What is Amazon affiliate marketing?"}, {"name": "Can you make money with Amazon affiliate program?", "parent": "What is Amazon affiliate marketing?"}, {"name": "How can I start affiliate marketing without a website?", "parent": "What is Amazon affiliate marketing?"}, {"name": "Is affiliate marketing a pyramid scheme?", "parent": "What is Amazon affiliate marketing?"}, {"name": "Can you make money with Amazon affiliate program?", "parent": "What is Amazon affiliate marketing?"}]}]}, {"name": "Can you really make money with affiliate marketing?", "parent": "what is affiliate marketing", "children": [{"name": "How much does it cost to start affiliate marketing?", "parent": "Can you really make money with affiliate marketing?", "children": [{"name": "Can you have multiple affiliate programs?", "parent": "How much does it cost to start affiliate marketing?"}, {"name": "What are website affiliate programs?", "parent": "How much does it cost to start affiliate marketing?"}, {"name": "How much does it cost to join ShareASale?", "parent": "How much does it cost to start affiliate marketing?"}, {"name": "Can you have multiple affiliate programs?", "parent": "How much does it cost to start affiliate marketing?"}, {"name": "Can you have multiple affiliate programs?", "parent": "How much does it cost to start affiliate marketing?"}, {"name": "What are website affiliate programs?", "parent": "How much does it cost to start affiliate marketing?"}, {"name": "How do I become an Amazon affiliate?", "parent": "How much does it cost to start affiliate marketing?"}, {"name": "Can you have multiple affiliate programs?", "parent": "How much does it cost to start affiliate marketing?"}]}, {"name": "How do you get paid from affiliate marketing?", "parent": "Can you really make money with affiliate marketing?", "children": [{"name": "Are affiliate programs worth it?", "parent": "How do you get paid from affiliate marketing?"}, {"name": "How do I get a job in affiliate marketing?", "parent": "How do you get paid from affiliate marketing?"}, {"name": "How do I become an Amazon affiliate?", "parent": "How do you get paid from affiliate marketing?"}, {"name": "What is affiliate marketing and how does it work for beginners?", "parent": "How do you get paid from affiliate marketing?"}, {"name": "Is affiliate marketing a pyramid scheme?", "parent": "How do you get paid from affiliate marketing?"}, {"name": "What is the best affiliate program?", "parent": "How do you get paid from affiliate marketing?"}, {"name": "What is affiliate marketing and how does it work for beginners?", "parent": "How do you get paid from affiliate marketing?"}, {"name": "Is affiliate marketing a pyramid scheme?", "parent": "How do you get paid from affiliate marketing?"}, {"name": "What is the best affiliate program?", "parent": "How do you get paid from affiliate marketing?"}, {"name": "Are affiliate programs worth it?", "parent": "How do you get paid from affiliate marketing?"}, {"name": "What is affiliate marketing and how does it work for beginners?", "parent": "How do you get paid from affiliate marketing?"}, {"name": "How do I get a job in affiliate marketing?", "parent": "How do you get paid from affiliate marketing?"}]}, {"name": "Is affiliate marketing still profitable?", "parent": "Can you really make money with affiliate marketing?", "children": [{"name": "What are the most profitable niches for affiliate marketing?", "parent": "Is affiliate marketing still profitable?"}, {"name": "How do I start an affiliate marketing business?", "parent": "Is affiliate marketing still profitable?"}, {"name": "How Much Can Affiliate Marketers Make?", "parent": "Is affiliate marketing still profitable?"}, {"name": "What are the most profitable niches for affiliate marketing?", "parent": "Is affiliate marketing still profitable?"}, {"name": "How do I get a job in affiliate marketing?", "parent": "Is affiliate marketing still profitable?"}, {"name": "How do I become an Amazon affiliate?", "parent": "Is affiliate marketing still profitable?"}, {"name": "What are the most profitable niches for affiliate marketing?", "parent": "Is affiliate marketing still profitable?"}, {"name": "How do I get a job in affiliate marketing?", "parent": "Is affiliate marketing still profitable?"}, {"name": "How do I become an Amazon affiliate?", "parent": "Is affiliate marketing still profitable?"}, {"name": "What are the most profitable niches for affiliate marketing?", "parent": "Is affiliate marketing still profitable?"}, {"name": "How do I start an affiliate marketing business?", "parent": "Is affiliate marketing still profitable?"}, {"name": "Do you need a website to be an affiliate marketer?", "parent": "Is affiliate marketing still profitable?"}]}]}, {"name": "Is affiliate marketing a pyramid scheme?", "parent": "what is affiliate marketing", "children": [{"name": "Are affiliate programs worth it?", "parent": "Is affiliate marketing a pyramid scheme?", "children": [{"name": "Is affiliate marketing a good idea?", "parent": "Are affiliate programs worth it?"}, {"name": "Do affiliate websites make money?", "parent": "Are affiliate programs worth it?"}, {"name": "What is better than affiliate marketing?", "parent": "Are affiliate programs worth it?"}, {"name": "What is better than affiliate marketing?", "parent": "Are affiliate programs worth it?"}, {"name": "What is the best affiliate program?", "parent": "Are affiliate programs worth it?"}, {"name": "Does affiliate marketing still work in 2018?", "parent": "Are affiliate programs worth it?"}]}, {"name": "Is affiliate marketing passive income?", "parent": "Is affiliate marketing a pyramid scheme?", "children": [{"name": "How do I start an affiliate marketing business?", "parent": "Is affiliate marketing passive income?"}, {"name": "How do I find affiliate marketing?", "parent": "Is affiliate marketing passive income?"}, {"name": "How does PPC affiliate marketing make money?", "parent": "Is affiliate marketing passive income?"}, {"name": "What are the different types of affiliate marketing programs?", "parent": "Is affiliate marketing passive income?"}, {"name": "How do I find affiliate marketing?", "parent": "Is affiliate marketing passive income?"}, {"name": "How does PPC affiliate marketing make money?", "parent": "Is affiliate marketing passive income?"}]}, {"name": "Do you need a website to be an affiliate marketer?", "parent": "Is affiliate marketing a pyramid scheme?", "children": [{"name": "What kind of website is best for affiliate marketing?", "parent": "Do you need a website to be an affiliate marketer?"}, {"name": "Does it cost to be an Amazon affiliate?", "parent": "Do you need a website to be an affiliate marketer?"}, {"name": "Do you need a business license for affiliate marketing?", "parent": "Do you need a website to be an affiliate marketer?"}, {"name": "How do I become an affiliate marketer without a website?", "parent": "Do you need a website to be an affiliate marketer?"}, {"name": "What kind of website is best for affiliate marketing?", "parent": "Do you need a website to be an affiliate marketer?"}, {"name": "Does it cost to be an Amazon affiliate?", "parent": "Do you need a website to be an affiliate marketer?"}]}]}]}];
+</script>
+<script>
+
+
+// ************** Generate the tree diagram	 *****************
+var margin = {top: 20, right: 120, bottom: 20, left: 120},
+	width = 1080 - margin.right - margin.left,
+	height = 960 - margin.top - margin.bottom;
+	
+var i = 0,
+	duration = 750,
+	root;
+
+var tree = d3.layout.tree()
+	.size([height, width]);
+
+var diagonal = d3.svg.diagonal()
+	.projection(function(d) { return [d.y, d.x]; });
+
+var svg = d3.select("body").append("svg")
+	.attr("width", width + margin.right + margin.left)
+	.attr("height", height + margin.top + margin.bottom)
+  .append("g")
+	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+root = treeData[0];
+root.x0 = height / 2;
+root.y0 = 0;
+  
+update(root);
+
+d3.select(self.frameElement).style("height", "500px");
+
+function update(source) {
+
+  // Compute the new tree layout.
+  var nodes = tree.nodes(root).reverse(),
+	  links = tree.links(nodes);
+
+  // Normalize for fixed-depth.
+  nodes.forEach(function(d) { d.y = d.depth * 180; });
+
+  // Update the nodes…
+  var node = svg.selectAll("g.node")
+	  .data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+  // Enter any new nodes at the parent's previous position.
+  var nodeEnter = node.enter().append("g")
+	  .attr("class", "node")
+	  .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+	  .on("click", click);
+
+  nodeEnter.append("circle")
+	  .attr("r", 1e-6)
+	  .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+  nodeEnter.append("text")
+	  .attr("x", function(d) { return d.children || d._children ? -13 : 13; })
+	  .attr("dy", ".35em")
+	  .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+	  .text(function(d) { return d.name; })
+	  .style("fill-opacity", 1e-6);
+
+  // Transition nodes to their new position.
+  var nodeUpdate = node.transition()
+	  .duration(duration)
+	  .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+
+  nodeUpdate.select("circle")
+	  .attr("r", 10)
+	  .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+  nodeUpdate.select("text")
+	  .style("fill-opacity", 1);
+
+  // Transition exiting nodes to the parent's new position.
+  var nodeExit = node.exit().transition()
+	  .duration(duration)
+	  .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+	  .remove();
+
+  nodeExit.select("circle")
+	  .attr("r", 1e-6);
+
+  nodeExit.select("text")
+	  .style("fill-opacity", 1e-6);
+
+  // Update the links…
+  var link = svg.selectAll("path.link")
+	  .data(links, function(d) { return d.target.id; });
+
+  // Enter any new links at the parent's previous position.
+  link.enter().insert("path", "g")
+	  .attr("class", "link")
+	  .attr("d", function(d) {
+		var o = {x: source.x0, y: source.y0};
+		return diagonal({source: o, target: o});
+	  });
+
+  // Transition links to their new position.
+  link.transition()
+	  .duration(duration)
+	  .attr("d", diagonal);
+
+  // Transition exiting nodes to the parent's new position.
+  link.exit().transition()
+	  .duration(duration)
+	  .attr("d", function(d) {
+		var o = {x: source.x, y: source.y};
+		return diagonal({source: o, target: o});
+	  })
+	  .remove();
+
+  // Stash the old positions for transition.
+  nodes.forEach(function(d) {
+	d.x0 = d.x;
+	d.y0 = d.y;
+  });
+}
+
+// Toggle children on click.
+function click(d) {
+  if (d.children) {
+	d._children = d.children;
+	d.children = null;
+  } else {
+	d.children = d._children;
+	d._children = null;
+  }
+  update(d);
+}
+
+</script>
+	
+  </body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Tree Example</title>
+
+    <style>
+	
+	.node {
+		cursor: pointer;
+	}
+
+	.node circle {
+	  fill: #fff;
+	  stroke: steelblue;
+	  stroke-width: 3px;
+	}
+
+	.node text {
+	  font: 12px sans-serif;
+	}
+
+	.link {
+	  fill: none;
+	  stroke: #ccc;
+	  stroke-width: 2px;
+	}
+	
+    </style>
+
+  </head>
+
+  <body>
+
+<!-- load the d3.js library -->	
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+var treeData = [{"name": "Top Level", "parent": "null", "children": [{"name": "What is Amazon's net worth 2018?", "parent": "Top Level", "children": [{"name": "How is Jeff Bezos richer than Bill Gates?", "parent": "What is Amazon's net worth 2018?", "children": [{"name": "Which famous billionaire had a talk show with her own name?", "parent": "How is Jeff Bezos richer than Bill Gates?"}, {"name": "Who is the wealthiest billionaire?", "parent": "How is Jeff Bezos richer than Bill Gates?"}, {"name": "Who is richer Bill Gates or Warren Buffett?", "parent": "How is Jeff Bezos richer than Bill Gates?"}, {"name": "Who is the richest person in history?", "parent": "How is Jeff Bezos richer than Bill Gates?"}, {"name": "Who will be the first trillionaire?", "parent": "How is Jeff Bezos richer than Bill Gates?"}, {"name": "Who is the richest person in the USA 2019?", "parent": "How is Jeff Bezos richer than Bill Gates?"}, {"name": "How much is Bezos worth today?", "parent": "How is Jeff Bezos richer than Bill Gates?"}, {"name": "What is Jeff Bezos net worth today?", "parent": "How is Jeff Bezos richer than Bill Gates?"}, {"name": "How rich is USA?", "parent": "How is Jeff Bezos richer than Bill Gates?"}, {"name": "Who's the richest man in United States?", "parent": "How is Jeff Bezos richer than Bill Gates?"}, {"name": "How does Jeff Bezos have so much money?", "parent": "How is Jeff Bezos richer than Bill Gates?"}, {"name": "Is Warren Buffett the richest man in America?", "parent": "How is Jeff Bezos richer than Bill Gates?"}]}, {"name": "Is Amazon richer than Apple?", "parent": "What is Amazon's net worth 2018?", "children": [{"name": "What is the richest company?", "parent": "Is Amazon richer than Apple?"}, {"name": "Is Walmart richer than Apple?", "parent": "Is Amazon richer than Apple?"}, {"name": "Is Amazon more valuable than Apple?", "parent": "Is Amazon richer than Apple?"}, {"name": "Is Amazon worth a trillion dollars?", "parent": "Is Amazon richer than Apple?"}, {"name": "How much is Microsoft net worth?", "parent": "Is Amazon richer than Apple?"}, {"name": "Is Microsoft worth more than Apple?", "parent": "Is Amazon richer than Apple?"}, {"name": "What is Amazon net worth?", "parent": "Is Amazon richer than Apple?"}, {"name": "Is Amazon an American company?", "parent": "Is Amazon richer than Apple?"}, {"name": "What is Google's net worth?", "parent": "Is Amazon richer than Apple?"}, {"name": "Who much is Oprah worth?", "parent": "Is Amazon richer than Apple?"}, {"name": "How Much Is Donald Trump really worth?", "parent": "Is Amazon richer than Apple?"}, {"name": "What did Susan Buffett die of?", "parent": "Is Amazon richer than Apple?"}]}]}, {"name": "How Much Is Amazon worth 2017?", "parent": "Top Level", "children": [{"name": "Is Amazon or Walmart worth more?", "parent": "How Much Is Amazon worth 2017?", "children": [{"name": "Is Walmart the richest company in the world?", "parent": "Is Amazon or Walmart worth more?"}, {"name": "Can Walmart beat Amazon?", "parent": "Is Amazon or Walmart worth more?"}, {"name": "Is Amazon cheaper than Walmart?", "parent": "Is Amazon or Walmart worth more?"}, {"name": "Who are the largest online retailers?", "parent": "Is Amazon or Walmart worth more?"}, {"name": "Who is Warren Buffet married to?", "parent": "Is Amazon or Walmart worth more?"}, {"name": "Who is Warren Buffett's daughter?", "parent": "Is Amazon or Walmart worth more?"}, {"name": "When did Susan Buffett die?", "parent": "Is Amazon or Walmart worth more?"}]}, {"name": "What's the most expensive company in the world?", "parent": "How Much Is Amazon worth 2017?", "children": [{"name": "Who is the richest company in the world 2018?", "parent": "What's the most expensive company in the world?"}, {"name": "Who is the richest company in the world 2019?", "parent": "What's the most expensive company in the world?"}, {"name": "Who owns the most shares of Apple?", "parent": "What's the most expensive company in the world?"}, {"name": "What is Disney's net worth?", "parent": "What's the most expensive company in the world?"}, {"name": "Is Aramco the biggest company in the world?", "parent": "What's the most expensive company in the world?"}, {"name": "What company employs the most workers in the world?", "parent": "What's the most expensive company in the world?"}, {"name": "What is Apple as a company?", "parent": "What's the most expensive company in the world?"}, {"name": "Where is alphabet Inc located?", "parent": "What's the most expensive company in the world?"}]}, {"name": "Who is Bill Gates net worth?", "parent": "How Much Is Amazon worth 2017?", "children": [{"name": "Who much is Oprah worth?", "parent": "Who is Bill Gates net worth?"}, {"name": "Why is Bill Gates so rich?", "parent": "Who is Bill Gates net worth?"}, {"name": "How much is Donald Trump worth?", "parent": "Who is Bill Gates net worth?"}, {"name": "Is Bill Gates the richest man alive?", "parent": "Who is Bill Gates net worth?"}, {"name": "Did Steve Jobs go to college?", "parent": "Who is Bill Gates net worth?"}, {"name": "How much money did Bill Gates give away?", "parent": "Who is Bill Gates net worth?"}, {"name": "Why is Bill Gates so rich?", "parent": "Who is Bill Gates net worth?"}, {"name": "Who is Elon Musk net worth?", "parent": "Who is Bill Gates net worth?"}, {"name": "Which is the richest man in the world?", "parent": "Who is Bill Gates net worth?"}]}]}, {"name": "What is Jeff Bezos net worth today?", "parent": "Top Level", "children": [{"name": "Which is the richest man in the world?", "parent": "What is Jeff Bezos net worth today?", "children": [{"name": "Who was the poorest US President?", "parent": "Which is the richest man in the world?"}, {"name": "What state has the most billionaires?", "parent": "Which is the richest man in the world?"}, {"name": "Is Mark Zuckerberg a billionaire?", "parent": "Which is the richest man in the world?"}, {"name": "Which country has the most millionaires?", "parent": "Which is the richest man in the world?"}, {"name": "Which country has the most billionaires 2019?", "parent": "Which is the richest man in the world?"}, {"name": "How old is Halle Berry?", "parent": "Which is the richest man in the world?"}]}, {"name": "Who is Elon Musk net worth?", "parent": "What is Jeff Bezos net worth today?", "children": [{"name": "How did Tesla start?", "parent": "Who is Elon Musk net worth?"}, {"name": "How does Elon Musk have so much money?", "parent": "Who is Elon Musk net worth?"}, {"name": "Is Tesla an American company?", "parent": "Who is Elon Musk net worth?"}, {"name": "How much is Elon Musk worth today?", "parent": "Who is Elon Musk net worth?"}, {"name": "Is Elon Musk married?", "parent": "Who is Elon Musk net worth?"}, {"name": "What did Elon Musk study?", "parent": "Who is Elon Musk net worth?"}]}, {"name": "Who are the richest woman in the world?", "parent": "What is Jeff Bezos net worth today?", "children": [{"name": "Who is the richest black woman in the world?", "parent": "Who are the richest woman in the world?"}, {"name": "Which state has the most black people?", "parent": "Who are the richest woman in the world?"}, {"name": "How did the Kardashians get so famous?", "parent": "Who are the richest woman in the world?"}, {"name": "How many billionaires are there in the world?", "parent": "Who are the richest woman in the world?"}, {"name": "How many wives did King David have?", "parent": "Who are the richest woman in the world?"}]}]}, {"name": "Is Amazon the richest company in the world?", "parent": "Top Level", "children": [{"name": "What's the world's largest company?", "parent": "Is Amazon the richest company in the world?", "children": [{"name": "What is Google's net worth?", "parent": "What's the world's largest company?"}, {"name": "What is Disney's net worth?", "parent": "What's the world's largest company?"}, {"name": "Is Aramco the biggest company in the world?", "parent": "What's the world's largest company?"}]}, {"name": "When was Amazon formed?", "parent": "Is Amazon the richest company in the world?", "children": [{"name": "Why did Jeff Bezos make Amazon?", "parent": "When was Amazon formed?"}, {"name": "How did Amazon get its start?", "parent": "When was Amazon formed?"}, {"name": "How many employees does Amazon have?", "parent": "When was Amazon formed?"}]}]}]}];
+</script>
+<script>
+
+
+// ************** Generate the tree diagram	 *****************
+var margin = {top: 20, right: 120, bottom: 20, left: 120},
+	width = 1080 - margin.right - margin.left,
+	height = 960 - margin.top - margin.bottom;
+	
+var i = 0,
+	duration = 750,
+	root;
+
+var tree = d3.layout.tree()
+	.size([height, width]);
+
+var diagonal = d3.svg.diagonal()
+	.projection(function(d) { return [d.y, d.x]; });
+
+var svg = d3.select("body").append("svg")
+	.attr("width", width + margin.right + margin.left)
+	.attr("height", height + margin.top + margin.bottom)
+  .append("g")
+	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+root = treeData[0];
+root.x0 = height / 2;
+root.y0 = 0;
+  
+update(root);
+
+d3.select(self.frameElement).style("height", "500px");
+
+function update(source) {
+
+  // Compute the new tree layout.
+  var nodes = tree.nodes(root).reverse(),
+	  links = tree.links(nodes);
+
+  // Normalize for fixed-depth.
+  nodes.forEach(function(d) { d.y = d.depth * 180; });
+
+  // Update the nodes…
+  var node = svg.selectAll("g.node")
+	  .data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+  // Enter any new nodes at the parent's previous position.
+  var nodeEnter = node.enter().append("g")
+	  .attr("class", "node")
+	  .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+	  .on("click", click);
+
+  nodeEnter.append("circle")
+	  .attr("r", 1e-6)
+	  .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+  nodeEnter.append("text")
+	  .attr("x", function(d) { return d.children || d._children ? -13 : 13; })
+	  .attr("dy", ".35em")
+	  .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+	  .text(function(d) { return d.name; })
+	  .style("fill-opacity", 1e-6);
+
+  // Transition nodes to their new position.
+  var nodeUpdate = node.transition()
+	  .duration(duration)
+	  .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+
+  nodeUpdate.select("circle")
+	  .attr("r", 10)
+	  .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+  nodeUpdate.select("text")
+	  .style("fill-opacity", 1);
+
+  // Transition exiting nodes to the parent's new position.
+  var nodeExit = node.exit().transition()
+	  .duration(duration)
+	  .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+	  .remove();
+
+  nodeExit.select("circle")
+	  .attr("r", 1e-6);
+
+  nodeExit.select("text")
+	  .style("fill-opacity", 1e-6);
+
+  // Update the links…
+  var link = svg.selectAll("path.link")
+	  .data(links, function(d) { return d.target.id; });
+
+  // Enter any new links at the parent's previous position.
+  link.enter().insert("path", "g")
+	  .attr("class", "link")
+	  .attr("d", function(d) {
+		var o = {x: source.x0, y: source.y0};
+		return diagonal({source: o, target: o});
+	  });
+
+  // Transition links to their new position.
+  link.transition()
+	  .duration(duration)
+	  .attr("d", diagonal);
+
+  // Transition exiting nodes to the parent's new position.
+  link.exit().transition()
+	  .duration(duration)
+	  .attr("d", function(d) {
+		var o = {x: source.x, y: source.y};
+		return diagonal({source: o, target: o});
+	  })
+	  .remove();
+
+  // Stash the old positions for transition.
+  nodes.forEach(function(d) {
+	d.x0 = d.x;
+	d.y0 = d.y;
+  });
+}
+
+// Toggle children on click.
+function click(d) {
+  if (d.children) {
+	d._children = d.children;
+	d.children = null;
+  } else {
+	d.children = d._children;
+	d._children = null;
+  }
+  update(d);
+}
+
+</script>
+	
+  </body>
+</html>

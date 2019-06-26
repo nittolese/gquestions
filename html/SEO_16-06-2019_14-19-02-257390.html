@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Tree Example</title>
+
+    <style>
+	
+	.node {
+		cursor: pointer;
+	}
+
+	.node circle {
+	  fill: #fff;
+	  stroke: steelblue;
+	  stroke-width: 3px;
+	}
+
+	.node text {
+	  font: 12px sans-serif;
+	}
+
+	.link {
+	  fill: none;
+	  stroke: #ccc;
+	  stroke-width: 2px;
+	}
+	
+    </style>
+
+  </head>
+
+  <body>
+
+<!-- load the d3.js library -->	
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+var treeData = [{"name": "Top Level", "parent": "null", "children": [{"name": "What is the SEO in marketing?", "parent": "Top Level", "children": [{"name": "How much does SEO cost?", "parent": "What is the SEO in marketing?", "children": [{"name": "How much does SEO cost per month UK?", "parent": "How much does SEO cost?"}, {"name": "Is SEO Cost Effective?", "parent": "How much does SEO cost?"}, {"name": "Is SEO worth the money?", "parent": "How much does SEO cost?"}, {"name": "Can you do SEO yourself?", "parent": "How much does SEO cost?"}, {"name": "How long does SEO take to start working?", "parent": "How much does SEO cost?"}, {"name": "Why is SEO so expensive?", "parent": "How much does SEO cost?"}, {"name": "Does SEO really work?", "parent": "How much does SEO cost?"}, {"name": "How much should I spend on SEO per month?", "parent": "How much does SEO cost?"}, {"name": "How do you price SEO services?", "parent": "How much does SEO cost?"}, {"name": "How do I become an SEO expert?", "parent": "How much does SEO cost?"}, {"name": "What is monthly SEO?", "parent": "How much does SEO cost?"}, {"name": "Can I do SEO on my own?", "parent": "How much does SEO cost?"}, {"name": "How much does SEO cost per month UK?", "parent": "How much does SEO cost?"}, {"name": "Is SEO worth the money?", "parent": "How much does SEO cost?"}, {"name": "Can you do SEO yourself?", "parent": "How much does SEO cost?"}, {"name": "Is SEO free?", "parent": "How much does SEO cost?"}, {"name": "Why is SEO so expensive?", "parent": "How much does SEO cost?"}, {"name": "How much should I spend on SEO per month?", "parent": "How much does SEO cost?"}, {"name": "How much does SEO cost per month UK?", "parent": "How much does SEO cost?"}, {"name": "Is SEO worth the money?", "parent": "How much does SEO cost?"}, {"name": "Can you do SEO yourself?", "parent": "How much does SEO cost?"}, {"name": "Is SEO Cost Effective?", "parent": "How much does SEO cost?"}, {"name": "Why is SEO so expensive?", "parent": "How much does SEO cost?"}, {"name": "How do you price SEO services?", "parent": "How much does SEO cost?"}]}, {"name": "What is SEO in simple words?", "parent": "What is the SEO in marketing?", "children": [{"name": "What do SEO companies actually do?", "parent": "What is SEO in simple words?"}, {"name": "How can I check my SEO ranking?", "parent": "What is SEO in simple words?"}, {"name": "Why SEO is so important?", "parent": "What is SEO in simple words?"}, {"name": "What exactly is SEO?", "parent": "What is SEO in simple words?"}, {"name": "What is SEO writing?", "parent": "What is SEO in simple words?"}, {"name": "How can I learn SEO for free?", "parent": "What is SEO in simple words?"}, {"name": "How do you do SEO?", "parent": "What is SEO in simple words?"}, {"name": "How can I learn SEO?", "parent": "What is SEO in simple words?"}, {"name": "What is backlink in SEO?", "parent": "What is SEO in simple words?"}, {"name": "Is SEO free?", "parent": "What is SEO in simple words?"}, {"name": "How do you explain SEO?", "parent": "What is SEO in simple words?"}, {"name": "What is SEO and how it works?", "parent": "What is SEO in simple words?"}, {"name": "What do SEO companies actually do?", "parent": "What is SEO in simple words?"}, {"name": "Why SEO is so important?", "parent": "What is SEO in simple words?"}, {"name": "What exactly is SEO?", "parent": "What is SEO in simple words?"}, {"name": "What is SEO job?", "parent": "What is SEO in simple words?"}, {"name": "How do you explain SEO?", "parent": "What is SEO in simple words?"}, {"name": "What is SEO and how it works?", "parent": "What is SEO in simple words?"}, {"name": "What do SEO companies actually do?", "parent": "What is SEO in simple words?"}, {"name": "Why SEO is so important?", "parent": "What is SEO in simple words?"}, {"name": "What exactly is SEO?", "parent": "What is SEO in simple words?"}, {"name": "How can I check my SEO ranking?", "parent": "What is SEO in simple words?"}, {"name": "What is SEO writing?", "parent": "What is SEO in simple words?"}]}]}, {"name": "What is SEO and how it works?", "parent": "Top Level", "children": [{"name": "How SEO is done?", "parent": "What is SEO and how it works?", "children": [{"name": "Is SEO easy to do?", "parent": "How SEO is done?"}, {"name": "How can I make my SEO better?", "parent": "How SEO is done?"}, {"name": "How can I learn SEO fast?", "parent": "How SEO is done?"}, {"name": "Which is best SEO tool?", "parent": "How SEO is done?"}, {"name": "How do I SEO my website?", "parent": "How SEO is done?"}, {"name": "What are SEO best practices?", "parent": "How SEO is done?"}, {"name": "How can I do SEO for free?", "parent": "How SEO is done?"}, {"name": "How can I learn SEO for free?", "parent": "How SEO is done?"}, {"name": "Is SEO easy to do?", "parent": "How SEO is done?"}, {"name": "How can I make my SEO better?", "parent": "How SEO is done?"}, {"name": "How can I learn SEO fast?", "parent": "How SEO is done?"}, {"name": "How do I get started with SEO?", "parent": "How SEO is done?"}, {"name": "How can SEO be done in easiest way?", "parent": "How SEO is done?"}, {"name": "How can I learn SEO at home?", "parent": "How SEO is done?"}, {"name": "How can I do SEO for free?", "parent": "How SEO is done?"}, {"name": "How can I learn SEO for free?", "parent": "How SEO is done?"}]}, {"name": "How SEO works step by step?", "parent": "What is SEO and how it works?", "children": [{"name": "How can I use SEO keywords for my website?", "parent": "How SEO works step by step?"}, {"name": "What are the SEO tools?", "parent": "How SEO works step by step?"}, {"name": "What goes SEO?", "parent": "How SEO works step by step?"}, {"name": "How much does SEO cost?", "parent": "How SEO works step by step?"}, {"name": "What is SEO and its types?", "parent": "How SEO works step by step?"}, {"name": "How can I improve my SEO ranking?", "parent": "How SEO works step by step?"}, {"name": "How can I start SEO business?", "parent": "How SEO works step by step?"}, {"name": "What is SMO in SEO?", "parent": "How SEO works step by step?"}, {"name": "How can I use SEO keywords for my website?", "parent": "How SEO works step by step?"}, {"name": "How do I get the best SEO for my website?", "parent": "How SEO works step by step?"}, {"name": "What are the SEO tools?", "parent": "How SEO works step by step?"}, {"name": "How can I create SEO?", "parent": "How SEO works step by step?"}, {"name": "What is SEO and its types?", "parent": "How SEO works step by step?"}, {"name": "How can I use SEO keywords for my website?", "parent": "How SEO works step by step?"}, {"name": "Can I do SEO on my own?", "parent": "How SEO works step by step?"}, {"name": "What are the SEO tools?", "parent": "How SEO works step by step?"}]}, {"name": "What are the benefits of SEO?", "parent": "What is SEO and how it works?", "children": [{"name": "What is the need of SEO?", "parent": "What are the benefits of SEO?"}, {"name": "How SEO improve your business?", "parent": "What are the benefits of SEO?"}, {"name": "What is the purpose of SEO?", "parent": "What are the benefits of SEO?"}, {"name": "Is SEO Cost Effective?", "parent": "What are the benefits of SEO?"}, {"name": "Why do websites need SEO?", "parent": "What are the benefits of SEO?"}, {"name": "Why does SEO matter?", "parent": "What are the benefits of SEO?"}, {"name": "Does SEO really matter?", "parent": "What are the benefits of SEO?"}, {"name": "How long does it take to get SEO results?", "parent": "What are the benefits of SEO?"}, {"name": "Is SEO Cost Effective?", "parent": "What are the benefits of SEO?"}, {"name": "What is the need of SEO?", "parent": "What are the benefits of SEO?"}, {"name": "How SEO improve your business?", "parent": "What are the benefits of SEO?"}, {"name": "Does SEO really matter?", "parent": "What are the benefits of SEO?"}, {"name": "How long does it take to get SEO results?", "parent": "What are the benefits of SEO?"}, {"name": "What is the need of SEO?", "parent": "What are the benefits of SEO?"}, {"name": "How effective is SEO?", "parent": "What are the benefits of SEO?"}, {"name": "How SEO improve your business?", "parent": "What are the benefits of SEO?"}]}]}, {"name": "What is SEO and its types?", "parent": "Top Level", "children": [{"name": "What is SEO in simple words?", "parent": "What is SEO and its types?", "children": [{"name": "What is SEO writing?", "parent": "What is SEO in simple words?"}, {"name": "How do you do SEO?", "parent": "What is SEO in simple words?"}, {"name": "How can I learn SEO?", "parent": "What is SEO in simple words?"}, {"name": "How can I check my SEO ranking?", "parent": "What is SEO in simple words?"}, {"name": "How much does SEO cost?", "parent": "What is SEO in simple words?"}, {"name": "Is SEO free?", "parent": "What is SEO in simple words?"}, {"name": "What is SEO job?", "parent": "What is SEO in simple words?"}, {"name": "How do you explain SEO?", "parent": "What is SEO in simple words?"}, {"name": "What do SEO companies actually do?", "parent": "What is SEO in simple words?"}, {"name": "Why SEO is so important?", "parent": "What is SEO in simple words?"}, {"name": "What exactly is SEO?", "parent": "What is SEO in simple words?"}]}, {"name": "What is GREY hat techniques in SEO?", "parent": "What is SEO and its types?", "children": [{"name": "How can I increase traffic to my website for free?", "parent": "What is GREY hat techniques in SEO?"}, {"name": "How do I have a negative SEO?", "parent": "What is GREY hat techniques in SEO?"}, {"name": "What are the black hat SEO techniques?", "parent": "What is GREY hat techniques in SEO?"}, {"name": "How many types of SEO are there?", "parent": "What is GREY hat techniques in SEO?"}, {"name": "What are GREY hat techniques?", "parent": "What is GREY hat techniques in SEO?"}, {"name": "What are gray hat hackers?", "parent": "What is GREY hat techniques in SEO?"}, {"name": "How can I increase traffic to my website for free?", "parent": "What is GREY hat techniques in SEO?"}, {"name": "How do I have a negative SEO?", "parent": "What is GREY hat techniques in SEO?"}, {"name": "What are the black hat SEO techniques?", "parent": "What is GREY hat techniques in SEO?"}, {"name": "How many types of SEO are there?", "parent": "What is GREY hat techniques in SEO?"}, {"name": "What are GREY hat techniques?", "parent": "What is GREY hat techniques in SEO?"}, {"name": "What are gray hat hackers?", "parent": "What is GREY hat techniques in SEO?"}]}, {"name": "What are two types of SEO?", "parent": "What is SEO and its types?", "children": [{"name": "What are the 3 types of?", "parent": "What are two types of SEO?"}, {"name": "What is onpage and offpage SEO?", "parent": "What are two types of SEO?"}, {"name": "What are the techniques for SEO?", "parent": "What are two types of SEO?"}, {"name": "What is SEO and type of SEO?", "parent": "What are two types of SEO?"}, {"name": "What are the best off page SEO techniques?", "parent": "What are two types of SEO?"}, {"name": "How do you do off page SEO?", "parent": "What are two types of SEO?"}, {"name": "What are the 3 types of?", "parent": "What are two types of SEO?"}, {"name": "What is onpage and offpage SEO?", "parent": "What are two types of SEO?"}, {"name": "What are the SEO techniques?", "parent": "What are two types of SEO?"}, {"name": "What is SEO and type of SEO?", "parent": "What are two types of SEO?"}, {"name": "What are the best off page SEO techniques?", "parent": "What are two types of SEO?"}, {"name": "How do you do off page SEO?", "parent": "What are two types of SEO?"}]}]}, {"name": "What is the best way to do SEO for your website?", "parent": "Top Level", "children": [{"name": "How can I do SEO for free?", "parent": "What is the best way to do SEO for your website?", "children": [{"name": "How do I hire a SEO expert?", "parent": "How can I do SEO for free?"}, {"name": "How can I be SEO expert?", "parent": "How can I do SEO for free?"}, {"name": "How can I learn SEO fast?", "parent": "How can I do SEO for free?"}, {"name": "What is the fastest way to rank a keyword?", "parent": "How can I do SEO for free?"}, {"name": "How do I get my website to rank higher on Google?", "parent": "How can I do SEO for free?"}, {"name": "How do I start a career in SEO?", "parent": "How can I do SEO for free?"}]}, {"name": "Can I do SEO on my own?", "parent": "What is the best way to do SEO for your website?", "children": [{"name": "How do I become SEO certified?", "parent": "Can I do SEO on my own?"}, {"name": "How do I find a good company for SEO?", "parent": "Can I do SEO on my own?"}, {"name": "How can I make my SEO better?", "parent": "Can I do SEO on my own?"}, {"name": "How do I become an SEO analyst?", "parent": "Can I do SEO on my own?"}, {"name": "How can I create SEO?", "parent": "Can I do SEO on my own?"}, {"name": "How do I hire a SEO company?", "parent": "Can I do SEO on my own?"}]}, {"name": "How can I learn SEO for free?", "parent": "What is the best way to do SEO for your website?", "children": [{"name": "Is SEO easy to learn?", "parent": "How can I learn SEO for free?"}, {"name": "How much does SEO cost per month?", "parent": "How can I learn SEO for free?"}, {"name": "How can I do SEO at home?", "parent": "How can I learn SEO for free?"}, {"name": "How can I learn SEO easily?", "parent": "How can I learn SEO for free?"}, {"name": "How do I become an SEO expert?", "parent": "How can I learn SEO for free?"}, {"name": "How do you run a successful SEO campaign?", "parent": "How can I learn SEO for free?"}]}]}]}];
+</script>
+<script>
+
+
+// ************** Generate the tree diagram	 *****************
+var margin = {top: 20, right: 120, bottom: 20, left: 120},
+	width = 1080 - margin.right - margin.left,
+	height = 960 - margin.top - margin.bottom;
+	
+var i = 0,
+	duration = 750,
+	root;
+
+var tree = d3.layout.tree()
+	.size([height, width]);
+
+var diagonal = d3.svg.diagonal()
+	.projection(function(d) { return [d.y, d.x]; });
+
+var svg = d3.select("body").append("svg")
+	.attr("width", width + margin.right + margin.left)
+	.attr("height", height + margin.top + margin.bottom)
+  .append("g")
+	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+root = treeData[0];
+root.x0 = height / 2;
+root.y0 = 0;
+  
+update(root);
+
+d3.select(self.frameElement).style("height", "500px");
+
+function update(source) {
+
+  // Compute the new tree layout.
+  var nodes = tree.nodes(root).reverse(),
+	  links = tree.links(nodes);
+
+  // Normalize for fixed-depth.
+  nodes.forEach(function(d) { d.y = d.depth * 180; });
+
+  // Update the nodes…
+  var node = svg.selectAll("g.node")
+	  .data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+  // Enter any new nodes at the parent's previous position.
+  var nodeEnter = node.enter().append("g")
+	  .attr("class", "node")
+	  .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+	  .on("click", click);
+
+  nodeEnter.append("circle")
+	  .attr("r", 1e-6)
+	  .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+  nodeEnter.append("text")
+	  .attr("x", function(d) { return d.children || d._children ? -13 : 13; })
+	  .attr("dy", ".35em")
+	  .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+	  .text(function(d) { return d.name; })
+	  .style("fill-opacity", 1e-6);
+
+  // Transition nodes to their new position.
+  var nodeUpdate = node.transition()
+	  .duration(duration)
+	  .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+
+  nodeUpdate.select("circle")
+	  .attr("r", 10)
+	  .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+  nodeUpdate.select("text")
+	  .style("fill-opacity", 1);
+
+  // Transition exiting nodes to the parent's new position.
+  var nodeExit = node.exit().transition()
+	  .duration(duration)
+	  .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+	  .remove();
+
+  nodeExit.select("circle")
+	  .attr("r", 1e-6);
+
+  nodeExit.select("text")
+	  .style("fill-opacity", 1e-6);
+
+  // Update the links…
+  var link = svg.selectAll("path.link")
+	  .data(links, function(d) { return d.target.id; });
+
+  // Enter any new links at the parent's previous position.
+  link.enter().insert("path", "g")
+	  .attr("class", "link")
+	  .attr("d", function(d) {
+		var o = {x: source.x0, y: source.y0};
+		return diagonal({source: o, target: o});
+	  });
+
+  // Transition links to their new position.
+  link.transition()
+	  .duration(duration)
+	  .attr("d", diagonal);
+
+  // Transition exiting nodes to the parent's new position.
+  link.exit().transition()
+	  .duration(duration)
+	  .attr("d", function(d) {
+		var o = {x: source.x, y: source.y};
+		return diagonal({source: o, target: o});
+	  })
+	  .remove();
+
+  // Stash the old positions for transition.
+  nodes.forEach(function(d) {
+	d.x0 = d.x;
+	d.y0 = d.y;
+  });
+}
+
+// Toggle children on click.
+function click(d) {
+  if (d.children) {
+	d._children = d.children;
+	d.children = null;
+  } else {
+	d.children = d._children;
+	d._children = null;
+  }
+  update(d);
+}
+
+</script>
+	
+  </body>
+</html>

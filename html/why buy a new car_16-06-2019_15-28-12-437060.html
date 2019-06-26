@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Tree Example</title>
+
+    <style>
+	
+	.node {
+		cursor: pointer;
+	}
+
+	.node circle {
+	  fill: #fff;
+	  stroke: steelblue;
+	  stroke-width: 3px;
+	}
+
+	.node text {
+	  font: 12px sans-serif;
+	}
+
+	.link {
+	  fill: none;
+	  stroke: #ccc;
+	  stroke-width: 2px;
+	}
+	
+    </style>
+
+  </head>
+
+  <body>
+
+<!-- load the d3.js library -->	
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script>
+var treeData = [{"name": "why buy a new car", "parent": "null", "children": [{"name": "Is buying a new car worth it?", "parent": "why buy a new car", "children": [{"name": "Should I buy a new car or keep mine?", "parent": "Is buying a new car worth it?", "children": [{"name": "Is it better to buy a used or new car?", "parent": "Should I buy a new car or keep mine?"}, {"name": "What are the advantages and disadvantages of buying a new car?", "parent": "Should I buy a new car or keep mine?"}, {"name": "Is it cheaper to rebuild an engine or replace it?", "parent": "Should I buy a new car or keep mine?"}, {"name": "How much should I spend on a car based on salary?", "parent": "Should I buy a new car or keep mine?"}, {"name": "How many years should you keep a new car?", "parent": "Should I buy a new car or keep mine?"}, {"name": "How many miles should a car last?", "parent": "Should I buy a new car or keep mine?"}, {"name": "Why you should never buy a new car?", "parent": "Should I buy a new car or keep mine?"}, {"name": "Is it cheaper to buy a new car or maintain an old one?", "parent": "Should I buy a new car or keep mine?"}, {"name": "What are the advantages of buying a new car as compared to used one?", "parent": "Should I buy a new car or keep mine?"}, {"name": "Why you should never buy a new car?", "parent": "Should I buy a new car or keep mine?"}, {"name": "Is it cheaper to rebuild an engine or replace it?", "parent": "Should I buy a new car or keep mine?"}, {"name": "How many years should you keep a new car?", "parent": "Should I buy a new car or keep mine?"}]}, {"name": "Is a new car a good investment?", "parent": "Is buying a new car worth it?", "children": [{"name": "Is buying a new car with cash a good idea?", "parent": "Is a new car a good investment?"}, {"name": "Which car is the best investment?", "parent": "Is a new car a good investment?"}, {"name": "Can I afford a new car?", "parent": "Is a new car a good investment?"}, {"name": "How long should you keep your car?", "parent": "Is a new car a good investment?"}, {"name": "Does a car count as an investment?", "parent": "Is a new car a good investment?"}, {"name": "How much should I invest in my car?", "parent": "Is a new car a good investment?"}, {"name": "What are the advantages and disadvantages of buying a new car?", "parent": "Is a new car a good investment?"}, {"name": "Should I buy a new car or used car?", "parent": "Is a new car a good investment?"}, {"name": "How do I get the best deal on a new car?", "parent": "Is a new car a good investment?"}, {"name": "What are the benefits of buying a new car?", "parent": "Is a new car a good investment?"}, {"name": "Is buying a new car ever worth it?", "parent": "Is a new car a good investment?"}, {"name": "Which car is the best investment?", "parent": "Is a new car a good investment?"}]}]}, {"name": "What are the advantages of buying a new car as compared to used one?", "parent": "why buy a new car", "children": [{"name": "What do dealers do with unsold new cars?", "parent": "What are the advantages of buying a new car as compared to used one?", "children": [{"name": "How much does a dealer make on a new car?", "parent": "What do dealers do with unsold new cars?"}, {"name": "Is it better to pay cash for a car?", "parent": "What do dealers do with unsold new cars?"}, {"name": "What happens to new unsold vehicles?", "parent": "What do dealers do with unsold new cars?"}, {"name": "Is it better to buy last year car model?", "parent": "What do dealers do with unsold new cars?"}, {"name": "What happens when a car dies?", "parent": "What do dealers do with unsold new cars?"}, {"name": "What is the best month to buy a new car?", "parent": "What do dealers do with unsold new cars?"}, {"name": "What happens to new unsold vehicles?", "parent": "What do dealers do with unsold new cars?"}, {"name": "Is it better to buy a used or new car?", "parent": "What do dealers do with unsold new cars?"}]}, {"name": "Is it better to get a car loan from bank or dealer?", "parent": "What are the advantages of buying a new car as compared to used one?", "children": [{"name": "Is car finance a bad idea?", "parent": "Is it better to get a car loan from bank or dealer?"}, {"name": "Do car dealers prefer cash or financing?", "parent": "Is it better to get a car loan from bank or dealer?"}, {"name": "Which bank is best for car loan?", "parent": "Is it better to get a car loan from bank or dealer?"}, {"name": "Is it better to get your own financing for a car?", "parent": "Is it better to get a car loan from bank or dealer?"}, {"name": "What's the best way to finance a car?", "parent": "Is it better to get a car loan from bank or dealer?"}, {"name": "Do car dealers prefer cash or financing?", "parent": "Is it better to get a car loan from bank or dealer?"}, {"name": "Which bank is best for car loan?", "parent": "Is it better to get a car loan from bank or dealer?"}, {"name": "What is 0 Financing on a car?", "parent": "Is it better to get a car loan from bank or dealer?"}]}, {"name": "How much of a car payment can I afford?", "parent": "What are the advantages of buying a new car as compared to used one?", "children": [{"name": "What car can I afford on 40k salary?", "parent": "How much of a car payment can I afford?"}, {"name": "Is buying a new car worth it?", "parent": "How much of a car payment can I afford?"}, {"name": "How much debt can I afford?", "parent": "How much of a car payment can I afford?"}, {"name": "What car can I afford on 60k salary?", "parent": "How much of a car payment can I afford?"}, {"name": "How can I get a low car payment?", "parent": "How much of a car payment can I afford?"}, {"name": "Can I afford a new car?", "parent": "How much of a car payment can I afford?"}, {"name": "What car can I afford on 40k salary?", "parent": "How much of a car payment can I afford?"}, {"name": "How much debt can I afford?", "parent": "How much of a car payment can I afford?"}, {"name": "Can you pay more on your car payment?", "parent": "How much of a car payment can I afford?"}]}]}, {"name": "What is the best time of year to buy a new car?", "parent": "why buy a new car", "children": [{"name": "How much should I offer for a new car?", "parent": "What is the best time of year to buy a new car?", "children": [{"name": "How much can you get off MSRP New Car?", "parent": "How much should I offer for a new car?"}, {"name": "How much does a dealer pay for a new car?", "parent": "How much should I offer for a new car?"}, {"name": "What month do new car models come out?", "parent": "How much should I offer for a new car?"}, {"name": "What is a good deal on a new car?", "parent": "How much should I offer for a new car?"}, {"name": "How much can you negotiate on a new car?", "parent": "How much should I offer for a new car?"}]}, {"name": "What is the best month to buy a new car?", "parent": "What is the best time of year to buy a new car?", "children": [{"name": "How do I buy a new car?", "parent": "What is the best month to buy a new car?"}, {"name": "Is February a good month to buy a car?", "parent": "What is the best month to buy a new car?"}, {"name": "How do you buy a car cash from a dealer?", "parent": "What is the best month to buy a new car?"}, {"name": "Should I buy a new car or keep my old one?", "parent": "What is the best month to buy a new car?"}, {"name": "Is it better to buy last year car model?", "parent": "What is the best month to buy a new car?"}, {"name": "What do dealerships do with unsold new cars?", "parent": "What is the best month to buy a new car?"}]}, {"name": "How much can you negotiate on a new car?", "parent": "What is the best time of year to buy a new car?", "children": [{"name": "What should I know before buying a new car?", "parent": "How much can you negotiate on a new car?"}, {"name": "Should you pay MSRP for a new car?", "parent": "How much can you negotiate on a new car?"}, {"name": "Are new car prices negotiable?", "parent": "How much can you negotiate on a new car?"}, {"name": "How much can a dealer take off MSRP?", "parent": "How much can you negotiate on a new car?"}, {"name": "What month do new car models come out?", "parent": "How much can you negotiate on a new car?"}, {"name": "How do I get the best deal on a new car?", "parent": "How much can you negotiate on a new car?"}]}]}, {"name": "Why you should not buy a new car?", "parent": "why buy a new car", "children": [{"name": "Is buying a new car a bad idea?", "parent": "Why you should not buy a new car?", "children": [{"name": "What are the advantages and disadvantages of buying a new car?", "parent": "Is buying a new car a bad idea?"}, {"name": "How long should you keep your car?", "parent": "Is buying a new car a bad idea?"}, {"name": "Is a new car a good investment?", "parent": "Is buying a new car a bad idea?"}]}, {"name": "Why financing a car is a bad idea?", "parent": "Why you should not buy a new car?", "children": [{"name": "Is paying cash for a car a good idea?", "parent": "Why financing a car is a bad idea?"}, {"name": "Can I afford a $500 car payment?", "parent": "Why financing a car is a bad idea?"}, {"name": "Can I get a car loan with a credit score of 600?", "parent": "Why financing a car is a bad idea?"}]}, {"name": "Is it better to pay cash or finance a car?", "parent": "Why you should not buy a new car?", "children": [{"name": "Why you should never buy a new car?", "parent": "Is it better to pay cash or finance a car?"}, {"name": "Does paying cash for a car get you a better deal?", "parent": "Is it better to pay cash or finance a car?"}, {"name": "Is financing a car a bad idea?", "parent": "Is it better to pay cash or finance a car?"}]}]}]}];
+</script>
+<script>
+
+
+// ************** Generate the tree diagram	 *****************
+var margin = {top: 20, right: 120, bottom: 20, left: 120},
+	width = 1080 - margin.right - margin.left,
+	height = 960 - margin.top - margin.bottom;
+	
+var i = 0,
+	duration = 750,
+	root;
+
+var tree = d3.layout.tree()
+	.size([height, width]);
+
+var diagonal = d3.svg.diagonal()
+	.projection(function(d) { return [d.y, d.x]; });
+
+var svg = d3.select("body").append("svg")
+	.attr("width", width + margin.right + margin.left)
+	.attr("height", height + margin.top + margin.bottom)
+  .append("g")
+	.attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+root = treeData[0];
+root.x0 = height / 2;
+root.y0 = 0;
+  
+update(root);
+
+d3.select(self.frameElement).style("height", "500px");
+
+function update(source) {
+
+  // Compute the new tree layout.
+  var nodes = tree.nodes(root).reverse(),
+	  links = tree.links(nodes);
+
+  // Normalize for fixed-depth.
+  nodes.forEach(function(d) { d.y = d.depth * 180; });
+
+  // Update the nodes…
+  var node = svg.selectAll("g.node")
+	  .data(nodes, function(d) { return d.id || (d.id = ++i); });
+
+  // Enter any new nodes at the parent's previous position.
+  var nodeEnter = node.enter().append("g")
+	  .attr("class", "node")
+	  .attr("transform", function(d) { return "translate(" + source.y0 + "," + source.x0 + ")"; })
+	  .on("click", click);
+
+  nodeEnter.append("circle")
+	  .attr("r", 1e-6)
+	  .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+  nodeEnter.append("text")
+	  .attr("x", function(d) { return d.children || d._children ? -13 : 13; })
+	  .attr("dy", ".35em")
+	  .attr("text-anchor", function(d) { return d.children || d._children ? "end" : "start"; })
+	  .text(function(d) { return d.name; })
+	  .style("fill-opacity", 1e-6);
+
+  // Transition nodes to their new position.
+  var nodeUpdate = node.transition()
+	  .duration(duration)
+	  .attr("transform", function(d) { return "translate(" + d.y + "," + d.x + ")"; });
+
+  nodeUpdate.select("circle")
+	  .attr("r", 10)
+	  .style("fill", function(d) { return d._children ? "lightsteelblue" : "#fff"; });
+
+  nodeUpdate.select("text")
+	  .style("fill-opacity", 1);
+
+  // Transition exiting nodes to the parent's new position.
+  var nodeExit = node.exit().transition()
+	  .duration(duration)
+	  .attr("transform", function(d) { return "translate(" + source.y + "," + source.x + ")"; })
+	  .remove();
+
+  nodeExit.select("circle")
+	  .attr("r", 1e-6);
+
+  nodeExit.select("text")
+	  .style("fill-opacity", 1e-6);
+
+  // Update the links…
+  var link = svg.selectAll("path.link")
+	  .data(links, function(d) { return d.target.id; });
+
+  // Enter any new links at the parent's previous position.
+  link.enter().insert("path", "g")
+	  .attr("class", "link")
+	  .attr("d", function(d) {
+		var o = {x: source.x0, y: source.y0};
+		return diagonal({source: o, target: o});
+	  });
+
+  // Transition links to their new position.
+  link.transition()
+	  .duration(duration)
+	  .attr("d", diagonal);
+
+  // Transition exiting nodes to the parent's new position.
+  link.exit().transition()
+	  .duration(duration)
+	  .attr("d", function(d) {
+		var o = {x: source.x, y: source.y};
+		return diagonal({source: o, target: o});
+	  })
+	  .remove();
+
+  // Stash the old positions for transition.
+  nodes.forEach(function(d) {
+	d.x0 = d.x;
+	d.y0 = d.y;
+  });
+}
+
+// Toggle children on click.
+function click(d) {
+  if (d.children) {
+	d._children = d.children;
+	d.children = null;
+  } else {
+	d.children = d._children;
+	d._children = null;
+  }
+  update(d);
+}
+
+</script>
+	
+  </body>
+</html>
