@@ -13,7 +13,7 @@
 
 ## Install dependencies
 ```
-pip -r requirements.txt
+pip install -r requirements.txt
 ```
 
 ## 🔍 Usage:
