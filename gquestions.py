@@ -1,20 +1,17 @@
 usage='''
-❓❔👾 Gquestions CLI Usage ❔❓
-
-🔍 Usage:
+      Gquestions CLI Usage
+   Usage:
     gquestions.py query <keyword> (en|es) [depth <depth>] [--csv] [--headless]
     gquestions.py (-h | --help)
-
-💡 Examples:
-    ▶️  gquestions.py query "flights" en              Search "flights" in English and export in html
-    ▶️  gquestions.py query "flights" en --headless   Search headlessly "flights" in English and export in html
-    ▶️  gquestions.py query "vuelos" es --csv         Search "vuelos" in Spanish and export in html and csv
-    ▶️  gquestions.py query "vuelos" es depth 1       Search "vuelos" in Spanish with a depth of 1 and export in html
-    ▶️  gquestions.py -h                              Print this message
+ Examples:
+      gquestions.py query "flights" en              Search "flights" in English and export in html
+      gquestions.py query "flights" en --headless   Search headlessly "flights" in English and export in html
+      gquestions.py query "vuelos" es --csv         Search "vuelos" in Spanish and export in html and csv
+      gquestions.py query "vuelos" es depth 1       Search "vuelos" in Spanish with a depth of 1 and export in html
+      gquestions.py -h                              Print this message
    
-👀 Options:
+ Options:
     -h, --help
-
 '''
 
 import os
@@ -122,7 +119,6 @@ Click on questions N times
 def clickNTimes(el, n=1):
     for i in range(n):
         el.click()
-        logging.info(f"clicking on ... {el.text}")
         sleepBar(1)
         scrollToFeedback()
         try:
@@ -160,14 +156,12 @@ def crawlQuestions(start_paa, paa_list, initialSet, depth=0):
         new_q = showNewQuestions(initialSet)
         for l, value in new_q.items():
             sleepBar(1)
-            logging.info(f"{l}, {value.text}")
             test1 = createNode(paa_lst=test[0]["children"][outer_cnt]["children"], 
                                 name=value.text,
                                 parent=test[0]["children"][outer_cnt]["name"],
                                 children=True)
             
         initialSet = getCurrentSERP()
-        logging.info(f"Current count: {outer_cnt}")
         outer_cnt += 1
         if depth==1:
             for i in range(depth):
@@ -246,8 +240,7 @@ Args:
 Returns:
     list of questions with the current new node
 """
-def createNode( n=-1, parent='null', children=False, name='',*, paa_lst):
-    logging.info(paa_lst)
+def createNode( n=-1, parent='null', children=False, name='', paa_lst=[]):
     if children:
         _d = {
         "name": name,
@@ -260,7 +253,6 @@ def createNode( n=-1, parent='null', children=False, name='',*, paa_lst):
         "parent": parent
         }
     if n!=-1:
-        logging.info(paa_lst[n]["children"])
         paa_lst[n]["children"].append(_d)
     else:
         paa_lst.append(_d)
@@ -291,10 +283,9 @@ def flatten_csv(data,depth,prettyname):
             merge = merge.drop_duplicates(subset='inner.inner.name', keep='first')
             merge.to_csv(prettyname,sep=';',encoding='utf-8')
     except Exception as e:
-        logging.warning(f"{e}")
+        pass
 
 if __name__ == "__main__":
-    logging.basicConfig(level=logging.INFO)
     args = docopt(usage)
     print(args)
     MAX_DEPTH = 1
@@ -327,12 +318,12 @@ if __name__ == "__main__":
             initialSet.update({cnt:q})
             cnt +=1
 
-        paa_list = []
+        paa_lst = []
 
-        crawlQuestions(start_paa, paa_list, initialSet,depth)
-        treeData = 'var treeData = ' + json.dumps(paa_list) + ';'
+        crawlQuestions(start_paa, paa_lst, initialSet,depth)
+        treeData = 'var treeData = ' + json.dumps(paa_lst) + ';'
         
-        if paa_list[0]['children']:
+        if paa_lst[0]['children']:
             root = os.path.dirname(os.path.abspath(__file__))
             templates_dir = os.path.join(root, 'templates')
             env = Environment( loader = FileSystemLoader(templates_dir) )
@@ -344,8 +335,8 @@ if __name__ == "__main__":
                 ))
 
     if args['--csv']:
-        if paa_list[0]['children']:
+        if paa_lst[0]['children']:
             _path = 'csv/'+prettyOutputName('csv')
-            flatten_csv(paa_list, depth, _path)
+            flatten_csv(paa_lst, depth, _path)
 
     browser.close()
