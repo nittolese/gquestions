@@ -19,7 +19,7 @@ pip install -r requirements.txt
 ## 🔍 Usage:
 
 ```
-python gquestions.py query <keyword> (en|es) [depth <depth>] [--csv] [--headless]
+python gquestions.py query <keyword> (en|es|fr) [depth <depth>] [--csv] [--headless]
 ```
 
 Print help message.
