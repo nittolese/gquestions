@@ -1,7 +1,6 @@
 # ❓❔👾 Gquestions CLI Usage ❔❓
 
- ![pybadge] (https://img.shields.io/badge/python-%3E%3D3.7-important.svg)  ![badge](https://img.shields.io/badge/license-GPLv3-brightgreen.svg)
-
+Are you looking for a ready-to-use tool? Check my [NeuralText People Also Ask free tool](https://www.neuraltext.com/ai/people-also-ask)
 
 
 [![asciicast](https://asciinema.org/a/4wrOzHnxQVcTImuofzdMxB35L.svg)](https://asciinema.org/a/4wrOzHnxQVcTImuofzdMxB35L)
