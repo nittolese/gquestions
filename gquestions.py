@@ -2,7 +2,7 @@ usage='''
 ❓❔👾 Gquestions CLI Usage ❔❓
 
 🔍 Usage:
-    gquestions.py query <keyword> (en|es) [depth <depth>] [--csv] [--headless]
+    gquestions.py query <keyword> (en|es|fr) [depth <depth>] [--csv] [--headless]
     gquestions.py (-h | --help)
 
 💡 Examples:
@@ -71,9 +71,12 @@ def initBrowser(headless=False):
 Search on Google and returns the list of PAA questions in SERP.
 """
 def newSearch(browser,query):
-    if lang== "en":
+    if lang == "en":
         browser.get("https://www.google.com?hl=en")
         searchbox = browser.find_element_by_xpath("//input[@aria-label='Search']")
+    elif lang == "fr":
+        browser.get("https://www.google.com?hl=fr")
+        searchbox = browser.find_element_by_xpath("//input[@aria-label='Rech.']")
     else:
         browser.get("https://www.google.com?hl=es")
         searchbox = browser.find_element_by_xpath("//input[@aria-label='Buscar']")
@@ -83,6 +86,8 @@ def newSearch(browser,query):
     tabNTimes()
     if lang== "en":
         searchbtn = browser.find_elements_by_xpath("//input[@aria-label='Google Search']")
+    elif lang == "fr":
+        searchbtn = browser.find_elements_by_xpath("//input[@aria-label='Recherche Google']")
     else:
     	searchbtn = browser.find_elements_by_xpath("//input[@aria-label='Buscar con Google']")
     try:
@@ -99,6 +104,8 @@ Helper function that scroll into view the PAA questions element.
 def scrollToFeedback():
     if lang == "en":
         el = browser.find_element_by_xpath("//div[@class='kno-ftr']//div/following-sibling::a[text()='Feedback']")
+    elif lang == "fr":
+        el = browser.find_element_by_xpath("//div[@class='kno-ftr']//div/following-sibling::a[text()='Commentaires']")
     else:
     	el = browser.find_element_by_xpath("//div[@class='kno-ftr']//div/following-sibling::a[text()='Enviar comentarios']")
 
@@ -308,6 +315,8 @@ if __name__ == "__main__":
 
     if args['en']:
         lang = "en"
+    elif args['fr']:
+        lang = "fr"
     elif args['es']:
         lang = "es"
         
